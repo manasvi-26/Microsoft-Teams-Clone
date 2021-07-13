@@ -1,111 +1,158 @@
-import React from 'react';
+import React,{useState,useRef, useEffect} from 'react';
 import io from 'socket.io-client';
 
 import '../styles/board.css';
+import '../styles/board.css';
 
-class Board extends React.Component {
+const Board = () => {
 
-    timeout;
-    socket = io.connect("/");
+    {/** Get jamboard Id */}
+    const param  = window.location.search.split("=");
+    console.log(param);
+    const jamboardId = param[1];
 
-    ctx;
-    isDrawing = false;
+    {/** Brush Size and color */}
+    const [color,setColor] = useState("#000000");
+    const [size,setSize] = useState("5");
 
-    constructor(props) {
-        super(props);
-        this.socket.emit("join canvas", {jamboardId : this.props.jamboardId})
-        this.socket.on("canvas-data", function(data){
+    const socketRef = useRef();
+    const canvasRef = useRef();
+    const timeoutRef = useRef();
 
-            var root = this;
-            var interval = setInterval(function(){
-                if(root.isDrawing) return;
-                root.isDrawing = true;
-                clearInterval(interval);
-                var image = new Image();
-                var canvas = document.querySelector('#board');
-                var ctx = canvas.getContext('2d');
-                image.onload = function() {
+    // const [ctx,setCtx] = useState({strokeColor : color, strokeSize : size});
+
+    const [isDrawing,setIsDrawing] = useState(false);
+    
+
+
+    useEffect(() => {
+        {/** scoket connection for real time collaboration */}
+
+        socketRef.current = io.connect("/");
+        
+        canvasRef.current = document.querySelector("#board");
+        const clearCanvas = canvasRef.current.toDataURL("image/png");
+
+        let ImageData = canvasRef.current.toDataURL("image/png");
+        
+        socketRef.current.emit("join canvas", {jamboardId, ImageData});
+
+        {/** Capture data when other user draws on whiteboard */}
+        socketRef.current.on("canvas-data", (data) => {
+    
+            let handle = setInterval(() => {
+                if(isDrawing)return;
+
+                setIsDrawing(true);
+                clearInterval(handle);
+
+                let image = new Image()
+                {/** add the drawing to our whiteboard */}
+                let ctx = canvasRef.current.getContext('2d');
+
+                image.onload = () => {
                     ctx.drawImage(image, 0, 0);
-
-                    root.isDrawing = false;
-                };
+                    setIsDrawing(false);
+                }
                 image.src = data;
             }, 200)
+    
         })
-    }
+        
+        drawOnCanvas();
+    },[])
 
-   
+    
+    const drawOnCanvas = () => {
 
+        let ctx = canvasRef.current.getContext('2d');
+        let sketch = document.querySelector('#sketch');
+        let sketch_style = getComputedStyle(sketch);
+        
+        canvasRef.current.width = parseInt(sketch_style.getPropertyValue('width'));
+        canvasRef.current.height = parseInt(sketch_style.getPropertyValue('height'));
 
-    componentDidMount() {
-        this.drawOnCanvas();
-    }
+        {/** Track Mouse Positions */}
+        let mouse = {x: 0, y: 0};
+        let last_mouse = {x: 0, y: 0};
 
-    componentWillReceiveProps(newProps) {
-        this.ctx.strokeStyle = newProps.color;
-        this.ctx.lineWidth = newProps.size;
-    }
-
-    drawOnCanvas() {
-        var canvas = document.querySelector('#board');
-        this.ctx = canvas.getContext('2d');
-        var ctx = this.ctx;
-
-        var sketch = document.querySelector('#sketch');
-        var sketch_style = getComputedStyle(sketch);
-        canvas.width = parseInt(sketch_style.getPropertyValue('width'));
-        canvas.height = parseInt(sketch_style.getPropertyValue('height'));
-
-        var mouse = {x: 0, y: 0};
-        var last_mouse = {x: 0, y: 0};
 
         /* Mouse Capturing Work */
-        canvas.addEventListener('mousemove', function(e) {
+        canvasRef.current.addEventListener('mousemove', (e) =>{
             last_mouse.x = mouse.x;
             last_mouse.y = mouse.y;
 
-            mouse.x = e.pageX - this.offsetLeft;
-            mouse.y = e.pageY - this.offsetTop;
+            mouse.x = e.pageX - canvasRef.current.offsetLeft;
+            mouse.y = e.pageY - canvasRef.current.offsetTop;
+        }, false);
+        
+      
+        canvasRef.current.addEventListener('mousedown', (e)=> {
+            canvasRef.current.addEventListener('mousemove', onPaint, false);
+        }, false);
+
+        canvasRef.current.addEventListener('mouseup', (e) =>{
+            canvasRef.current.removeEventListener('mousemove', onPaint, false);
         }, false);
 
 
-        /* Drawing on Paint App */
-        ctx.lineWidth = this.props.size;
-        ctx.lineJoin = 'round';
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = this.props.color;
+        const onPaint = () => {
 
-        canvas.addEventListener('mousedown', function(e) {
-            canvas.addEventListener('mousemove', onPaint, false);
-        }, false);
+            ctx.lineWidth = size;
+            ctx.strokeStyle = color;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
 
-        canvas.addEventListener('mouseup', function() {
-            canvas.removeEventListener('mousemove', onPaint, false);
-        }, false);
-
-        var root = this;
-        var onPaint = function() {
+            console.log(size,color)
+            {/** Track stroke */}
             ctx.beginPath();
             ctx.moveTo(last_mouse.x, last_mouse.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.closePath();
             ctx.stroke();
 
-            if(root.timeout != undefined) clearTimeout(root.timeout);
-            root.timeout = setTimeout(function(){
-                var base64ImageData = canvas.toDataURL("image/png");
-                root.socket.emit("canvas-data", base64ImageData);
-            }, 1000)
-        };
+            {/** timeout of 1second */}            
+            if(timeoutRef.current != undefined)clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
+                let image = canvasRef.current.toDataURL("image/png");
+                socketRef.current.emit("canvas-data", image);
+            },1000) 
+        }
     }
 
-    render() {
-        return (
-            <div class="sketch" id="sketch">
-                <canvas className="board" id="board"></canvas>
+
+    
+    return (
+        <div className="container">
+            <div class="tools-section">
+                {/** Tool Bar */}
+                <div className="color-picker-container" >
+                    Select Brush Color : &nbsp; 
+                    <input type="color" value={color} onChange={e => setColor(e.target.value)}/>
+                </div>
+
+                <div className="brushsize-container">
+                    Select Brush Size : &nbsp; 
+                    <select value={size} onChange={e => setSize(e.target.value)}>
+                        <option> 5 </option>
+                        <option> 10 </option>
+                        <option> 15 </option>
+                        <option> 20 </option>
+                        <option> 25 </option>
+                        <option> 30 </option>
+                    </select>
+                </div>
             </div>
-        )
-    }
+            {/** Canvas */}
+            <div class="board-container">
+                <div class="sketch" id="sketch">
+                    <canvas className="board" id="board"></canvas>
+                </div>
+            </div>
+        </div>
+
+    )
+    
 }
 
 export default Board

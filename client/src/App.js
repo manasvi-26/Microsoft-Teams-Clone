@@ -8,7 +8,7 @@ import MyTeams from './screens/MyTeams'
 import Channel from './screens/Channel'
 import Meet from './screens/Meet'
 import Conversation from './screens/Conversation'
-import Container from './screens/Container'
+import Board from './screens/Board'
 
 
 import AlertContextProvider from './context/AlertContext' 
@@ -32,7 +32,7 @@ const App = () => {
                     <Route path = '/channel' component={Channel} />
                     <Route path = '/meet' component={Meet} />
                     <Route path = '/conversation' component={Conversation} />
-                    <Route path='/whiteboard' exact component={Container}/>
+                    <Route path='/whiteboard' exact component={Board}/>
                     
                     
                 </Router>
