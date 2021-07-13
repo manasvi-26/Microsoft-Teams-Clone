@@ -341,3 +341,12 @@ At the end of every week i would work on the documentation and planning of the n
 <br/>
 <br/>
 
+
+## Database Schema Diagram
+
+<div align="center">
+<img src="./images/database.png" width="800px" height="400px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
+
