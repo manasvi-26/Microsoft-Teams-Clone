@@ -2,12 +2,15 @@
 
 ###  <div align="center">[Click Here to Access](https://micorosoft-teams-clone.herokuapp.com/)</div>
 
-## Table of Contents 
-|  | |
-|--|--|
-|  |  |
 
+## Table Of Contents
 
+1. User Guide
+2. Technology Stack
+3. Agile Methodology
+4. Testing
+5. Epics-Features-Stories
+6. Database Diagram
 
 
 ##  A Comprehensive User Guide
@@ -36,12 +39,12 @@ The sign up page will prompt you to enter your name along with the email and pas
 <br/>
 
 <div align="center">
-<img src="./gifs/login.gif" width="310px" height="160px" margin ="30px"/>  
+<img src="./gifs/login.gif" width="250px" height="160px" margin ="30px"/>  
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="./gifs/register.gif" width="310px" height="160px"/>  
+<img src="./gifs/register.gif" width="250px" height="160px"/>  
 </div>
 
 
