@@ -192,6 +192,7 @@ When a user makes a change to the Whiteboard, it updates on other users Whiteboa
 -  The final button allows you to leave the Meet and go back to the Channel page. The Meet remains active until all members have left the call, at which point it automatically closes and saves the chat as a Conversation.
 
 
+
 ##  Technology Stack
 
 
@@ -221,6 +222,25 @@ However the major disadvantage of the mesh network is that it brings a lot of ch
 
 **Socket**.**io** library was used to establish a connection between two devices with WebSockets.
 WebSocket is a communication protocol which provides a full-duplex and low-latency channel between the server and the browser. With the help of this library I was able to imeplement a **real time chat** and **shared whiteboard collaboration** system on the app. The [rooms feature](https://socket.io/docs/v3/rooms/index.html) in socketio enabled me to implement the **chat rooms** and **meet rooms** features as well.
+
+## Agile Methodolgy
+
+### Sprint Planning 
+
+At the start of every week I planned out the features and goals I had to implement. I would typically spend the first 4-5 days of the week in actually implementing each feature. After implementing the features I had done intensive testing on all the features and tested it on variuos browsers as well.
+
+At the end of every week i would work on the documentation and planning of the next week.
+
+<div align="center">
+<img src="./images/agile1.jpeg" width="1000px" height="400px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
+<div align="center">
+<img src="./images/agile2.jpeg" width="1000px" height="400px" margin ="30px"/>  
+</div>
+
+
 
 ## Testing
 
@@ -313,4 +333,6 @@ WebSocket is a communication protocol which provides a full-duplex and low-laten
 | Real time collaboration with multiple users | Yes |
 
 
-## 
+## Epics - Features - Stories Diagram
+
+![alt text](http://url/to/img.png)
