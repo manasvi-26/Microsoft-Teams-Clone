@@ -1,6 +1,6 @@
 #  <div align="center"> Microsoft Teams Clone </div>
 
-###  <div align="center">[Click Here to Access](https://micorosoft-teams-clone.herokuapp.com/)</div>
+###  <div align="center">[Click Here to Access The App](https://micorosoft-teams-clone.herokuapp.com/)</div>
 
 
 ## Table Of Contents
