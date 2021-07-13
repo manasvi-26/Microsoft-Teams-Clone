@@ -335,4 +335,9 @@ At the end of every week i would work on the documentation and planning of the n
 
 ## Epics - Features - Stories Diagram
 
-![alt text](http://url/to/img.png)
+<div align="center">
+<img src="./images/stories.png" width="1000px" height="400px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
+
