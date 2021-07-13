@@ -22,7 +22,6 @@
 
 This web application was built to emulate the Microsoft teams Application that is so widely known and used. This endeavour was a part of the Microsoft Engage Mentorship Program '21 and it contains a multitude of features that are inorporated in the Microsoft Teams application. This article serves the purpose of providing an end-to-end guide for any new users navigating the application as well as listing out all the features and functionality that this application has to offer.
 
-  
 
 ####  Sign Up and Login
 
@@ -31,12 +30,20 @@ As a user, you have the option to Login if you have an account, or create a comp
 **Log in**
 The login page will simply ask for your registered username and email and assuming the entered values are correct, it will sign you in to your account and you are ready to begin browsing teams!
 
-** Sign Up**
+**Sign Up**
 The sign up page will prompt you to enter your name along with the email and password that you would like to register and once that is entered and submitted, you can immediately login!
+<br/>
+<br/>
 
-  
+<div align="center">
+<img src="./gifs/login.gif" width="310px" height="160px" margin ="30px"/>  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./gifs/register.gif" width="310px" height="160px"/>  
+</div>
 
-**Put sign up and login page gifs side by side here**
 
   
 
@@ -52,9 +59,14 @@ Once you are logged in, you will be directed to the Teams page where you will fi
 
 Here you also have the opportunity to create a new Team by clicking the button in the top right corner. You will be asked to input a name for the Team, as well as a general description of what the purpose of this Team is. Once that is done, the new Team will be created and will now appear on the Teams page.
 
-  
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/createTeam.gif" width="550px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
 
-**Put GIF of Team creation here**
 
   
 
@@ -82,19 +94,47 @@ Each Channel Page has a lot going on, so let's break it down one by one.
 
 -  Here you also have the option to create an entirely new channel. If you click this button, you will get a pop-up box prompting you to enter a name for the channel. Once this is done, your channel is created and you can view it and navigate to it from the side bar.
 
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/createChannel.gif" width="550px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
+
 -  And finally there is an option to leave the Team.
 
 -  At the bottom of the screen is an option to start a new `Conversation`. Conversations will be discussed in the next section, but briefly, Conversations are channel-specific chat pages that allow users to communicate through text messages.
 
 On clicking the Create New Conversation button, you will be prompted to enter a topic for the conversation and then a new conversation is created! All the existing conversations of a particular channel will be displayed in that channel itself and are not accessible from other channels.
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/createConversation.gif" width="570px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
 
 -  At the top right there is an option to start a `Meet`. Meets will also be discussed in future sections, but essentially, they are channel-specific video calls that multiple members can join and participate in live discussions with other Team members that have joined the Meet.
 
 Meets can be started by clicking on the Create Meet button and entering the topic of the meeting. There can only be one Meet per channel at a time, and if a Meet is running, the Create Meet button will change to a Join Meet button which you can click on the join the ongoing Meet. Note that any text conversations that go on in a Meet will also be stored as a Conversation in the corresponding Channel page.
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/createMeet.gif" width="570px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/>
+
 
 -  The last button on the top right is the Members button. This can be used to view the current members in the Team as well as add more by entering an email and clicking on the **+** sign in the prompt.
-
-  
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/addMember.gif" width="590px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/> 
 
 ###  Conversations
 
@@ -109,7 +149,13 @@ All messages consist of three blocks:
 -  The middle chunck shows the actual message that was sent.
 
 -  The bottom row shows the time of sending on the left.
-
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/conversation.gif" width="590px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/> 
   
 
 The top of the Conversations page shows the topic of the conversation that was entered when it was first created. On the top left you also have a button to take you back to the main channels page.
@@ -131,6 +177,15 @@ There are 6 buttons visible on the top of this page:
 -  The next button opens up a new window with a shared `Whiteboard` that users in the Meet can draw on. Here, you can change the color of the drawing brush as well as change the thickness of the brush.
 
 When a user makes a change to the Whiteboard, it updates on other users Whiteboard screens in real time, allowing for streamlined and effective collaboration, even through drawing and diagrams! The whiteboard remains functional and can be used even after the Meet ends.
+
+<br/>
+<br/>
+<div align="center">
+<img src="./gifs/whiteboard.gif" width="590px" height="300px" margin ="30px"/>  
+</div>
+<br/>
+<br/> 
+
 
 -  The second to last button is a screen share button that allows you to share either a window, tab, or your entire screen. On clicking this button, you will be prompted to choose among them and then your screen will be shared based on that. Now, all the other participants can see exactly what's going on in your screen in real time! To stop the screen share, simply click on the prompt provided by your browser.
 
